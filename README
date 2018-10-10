@@ -1,0 +1,7 @@
+
+## Deploy
+
+* lsof -i:9000
+* activator clean stage -mem 512
+* activator "start -Dapplication.secret='abcdefghijk' -Dconfig.resource=staging.conf"
+* activator "start -Dapplication.secret='abcdefghijk' -Dconfig.resource=production.conf"

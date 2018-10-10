@@ -1,0 +1,90 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Map static resources from the /public folder to the /assets URL path
+GET /assets/*file controllers.Assets.versioned(path="/public", file: Asset)
+
+# Api
+GET  /admin_users                               @controllers.AdminUsersController.index
+GET  /admin_users/me                            @controllers.AdminUsersController.me
+GET  /admin_users/business_results              @controllers.AdminUsersController.businessResults
+GET  /admin_users/check_email_duplication       @controllers.AdminUsersController.checkEmailDuplication
+POST /admin_users/sign_in                       @controllers.AdminUsersController.signIn
+POST /admin_users/store_sign_in                 @controllers.AdminUsersController.storeSignIn
+POST /admin_users/create/agency                 @controllers.AdminUsersController.createOfAgency
+POST /admin_users/create/store                  @controllers.AdminUsersController.createOfStore
+POST /admin_users/:id/connect_to_store          @controllers.AdminUsersController.connectToStore(id: Int)
+POST /admin_users/:id/update                    @controllers.AdminUsersController.update(id: Int)
+POST /admin_users/:id/update_password           @controllers.AdminUsersController.updatePassword(id: Int)
+
+GET  /agencies                                  @controllers.AgenciesController.index
+GET  /agencies/me                               @controllers.AgenciesController.me
+GET  /agencies/business_results                 @controllers.AgenciesController.businessResults
+GET  /agencies/:id                              @controllers.AgenciesController.show(id: Int)
+POST /agencies/create                           @controllers.AgenciesController.create
+
+GET  /stores                                    @controllers.StoresController.index(status: Option[Int])
+GET  /stores/me                                 @controllers.StoresController.me
+GET  /stores/:id                                @controllers.StoresController.show(id: Int)
+GET  /stores/:id/plan_contracts/latest_end_date @controllers.StoresController.latestEndDate(id: Int)
+POST /stores/create                             @controllers.StoresController.create
+POST /stores/:id/approve                        @controllers.StoresController.approve(id: Int)
+POST /stores/:id/reject                         @controllers.StoresController.reject(id: Int)
+POST /stores/:id/nearest_stations/create        @controllers.StoresController.createNearestStation(id: Int)
+POST /stores/:id/update                         @controllers.StoresController.update(id: Int)
+POST /stores/:id/nearest_stations/delete        @controllers.StoresController.deleteAllNearestStation(id: Int)
+
+GET  /recruitments                              @controllers.RecruitmentsController.index(status: Option[Int])
+GET  /recruitments/me                           @controllers.RecruitmentsController.me
+GET  /recruitments/:id                          @controllers.RecruitmentsController.show(id: Int)
+POST /recruitments/create                       @controllers.RecruitmentsController.create
+POST /recruitments/:id/create_tmp               @controllers.RecruitmentsController.createTmp(id: Int)
+POST /recruitments/:id/approve                  @controllers.RecruitmentsController.approve(id: Int)
+POST /recruitments/:id/reject                   @controllers.RecruitmentsController.reject(id: Int)
+POST /recruitments/:id/early_close              @controllers.RecruitmentsController.earlyClose(id: Int)
+POST /recruitments/:id/photos/create            @controllers.RecruitmentsController.createPhoto(id: Int)
+POST /tmp_recruitments/:id/photos/create        @controllers.RecruitmentsController.createTmpPhoto(id: Int)
+POST /recruitments/:id/update                   @controllers.RecruitmentsController.update(id: Int)
+POST /recruitments/:id/photos/delete            @controllers.RecruitmentsController.deleteAllPhoto(id: Int)
+POST /recruitments/:id/convert_from_tmp         @controllers.RecruitmentsController.convertFromTmp(id: Int)
+
+GET  /entries                                   @controllers.EntriesController.index
+GET  /entries/weekly_sum                        @controllers.EntriesController.weeklySum
+
+GET  /contracts                                 @controllers.PublishedContractsController.index
+
+GET  /plan_contracts                            @controllers.PublishedPlanContractsController.index(status: Option[Int])
+GET  /plan_contracts/:id                        @controllers.PublishedPlanContractsController.show(id: Int)
+GET  /plan_contracts/:id/check_editable         @controllers.PublishedPlanContractsController.checkEditable(id: Int)
+POST /plan_contracts/create                     @controllers.PublishedPlanContractsController.create
+POST /plan_contracts/:id/approve                @controllers.PublishedPlanContractsController.approve(id: Int)
+POST /plan_contracts/:id/reject                 @controllers.PublishedPlanContractsController.reject(id: Int)
+POST /plan_contracts/:id/update                 @controllers.PublishedPlanContractsController.update(id: Int)
+
+GET  /option_contracts                          @controllers.PublishedOptionContractsController.index(status: Option[Int])
+GET  /option_contracts/:id                      @controllers.PublishedOptionContractsController.show(id: Int)
+POST /option_contracts/create                   @controllers.PublishedOptionContractsController.create
+POST /option_contracts/:id/approve              @controllers.PublishedOptionContractsController.approve(id: Int)
+POST /option_contracts/:id/reject               @controllers.PublishedOptionContractsController.reject(id: Int)
+POST /option_contracts/:id/update               @controllers.PublishedOptionContractsController.update(id: Int)
+
+GET  /questions/:id                             @controllers.QuestionsController.show(id: Int)
+POST /questions/:id/answer/create               @controllers.AnswersController.create(id: Int)
+POST /questions/:id/answer/update               @controllers.AnswersController.update(id: Int)
+
+GET  /option_ads                                @controllers.OptionAdsController.index
+POST /option_ads/create                         @controllers.OptionAdsController.create
+POST /option_ads/:id/thumbnails/update          @controllers.OptionAdsController.updateThumbnail(id: Int)
+POST /option_ads/:id/delete                     @controllers.OptionAdsController.delete(id: Int)
+
+GET  /options                                   @controllers.PublishedOptionsController.index
+GET  /prefectures                               @controllers.PrefecturesController.index
+GET  /prefectures/:id                           @controllers.PrefecturesController.show(id: Int)
+GET  /business_conditions                       @controllers.BusinessConditionsController.index
+GET  /occupations                               @controllers.OccupationsController.index
+GET  /specific_tags                             @controllers.SpecificTagsController.index
+GET  /payment_types                             @controllers.PaymentTypesController.index
+
+GET  /billings                                  @controllers.BillingsController.index(startDate: Option[String], endDate: Option[String], agencyId: Option[String], storeId: Option[String], amount: Option[String])
+GET  /billings/weekly_sum                       @controllers.BillingsController.weeklySum
