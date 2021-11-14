@@ -1,6 +1,11 @@
 ## Specs
 - scala
 - play framework（ https://www.playframework.com/documentation/ja/2.4.x/Home ）
+- scalikejdbc（ http://scalikejdbc.org/ ）
+- aws-java-sdk
+- mongodb
+- rds
+- ec2
 
 ## Deploy Flow Memo
 1. lsof -i:9000
