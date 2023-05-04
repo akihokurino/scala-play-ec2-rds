@@ -1,4 +1,4 @@
-## Specs
+## Used, Dependency
 - scala
 - play framework（ https://www.playframework.com/documentation/ja/2.4.x/Home ）
 - scalikejdbc（ http://scalikejdbc.org/ ）
